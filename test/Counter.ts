@@ -37,4 +37,11 @@ describe("Counter", function () {
     // Test the deployed address is valid
     expect(ethers.isAddress(counterContractAddress)).to.eq(true);
   });
+
+  it("count should be zero after deployment", async function () {
+  const count = await counterContract.getCount();
+  console.log(`Counter.getCount() === ${count}`);
+  // Expect initial count to be 0 after deployment
+  expect(count).to.eq(0);
+});
 });
