@@ -44,4 +44,11 @@ describe("Counter", function () {
   // Expect initial count to be 0 after deployment
   expect(count).to.eq(0);
 });
+  it("increment the counter by 1", async function () {
+  const countBeforeInc = await counterContract.getCount();
+  const tx = await counterContract.connect(signers.alice).increment(1);
+  await tx.wait();
+  const countAfterInc = await counterContract.getCount();
+  expect(countAfterInc).to.eq(countBeforeInc + 1n);
+});
 });
